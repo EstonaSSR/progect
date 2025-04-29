@@ -1,27 +1,36 @@
+import random
 import pandas as pd
 
-df = pd.read_excel("dish.xlsx")
-ingrediens = []
-i = 0
+# Загрузка данных из файла Excel
+df = pd.read_excel('dish.xlsx')
 
+# Преобразование данных в словарь
+recipes = {}
+for index, row in df.iterrows():
+    dish = row['Блюдо']
+    ingredients = row['Ингредиенты'].split(',')  # Предполагается, что ингредиенты разделены запятыми
+    recipes[dish] = [ingredient.strip() for ingredient in ingredients]
 
-# print("введите ваши ингредиенты, если хотите закончить введите стоп")
-# while 1:
-#     inpud = input()
-#     if inpud == "stop" or inpud == "стоп" or inpud == "cnjg" or inpud == "ыещз":
-#        break
-#     ingrediens.insert(i, inpud)
-#     i=i+1
-#
-#
-# print("ваши ингредиенты")
+def q(b: list) -> str:
+    a = []
 
-h = df.iloc[1,1]
-p = [h]
-print(p[0])
+    for dish, ingredients in recipes.items():
+        if all(ingredient in b for ingredient in ingredients):
+            a.append(dish)
 
+    if a:
+        return random.choice(a)
+    else:
+        return "Ничего не найдено. Видимо, сегодня голодаешь. Или сходи в магазин. 🛒"
 
+b = input("Введи ингредиенты через запятую (например: яйца, хлеб, сыр): ").lower().split(', ')
+b = [ingredient.strip() for ingredient in b]
 
+result = q(b)
+print(f"\n=== Результат ===")
+print(f"Из {', '.join(b)} можно приготовить: {result}")
 
-
-
+if result == "Ничего не найдено.":
+    print("Совет: попробуй заказать доставку. Или смирись с голодом")
+elif result == "Кофе":
+    print("Поздравляю, ты достиг дна кулинарии")
