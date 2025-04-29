@@ -1,0 +1,27 @@
+import pandas as pd
+
+df = pd.read_excel("dish.xlsx")
+ingrediens = []
+i = 0
+
+
+# print("введите ваши ингредиенты, если хотите закончить введите стоп")
+# while 1:
+#     inpud = input()
+#     if inpud == "stop" or inpud == "стоп" or inpud == "cnjg" or inpud == "ыещз":
+#        break
+#     ingrediens.insert(i, inpud)
+#     i=i+1
+#
+#
+# print("ваши ингредиенты")
+
+h = df.iloc[1,1]
+p = [h]
+print(p[0])
+
+
+
+
+
+
