@@ -27,7 +27,7 @@ b = input("Введи ингредиенты через запятую (напр
 b = [ingredient.strip() for ingredient in b]
 
 result = q(b)
-print(f"\n=== Результат ===")
+print(f"\n Результат 
 print(f"Из {', '.join(b)} можно приготовить: {result}")
 
 if result == "Ничего не найдено.":
